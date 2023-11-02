@@ -43,15 +43,9 @@ function find_changepoints(data, desired_confidence, startx)
         % Save the split position
         global_points(end+1) = split_point + startx;
         
-
-
-
-        % Create empty array the same size as data
-        
-        x = (1:length(S)) + startx;
         yyaxis right
         figure(1);
-        plot(x, S,'LineWidth',2.0);
+        plot(S,'LineWidth',2.0);
         hold on
         % Recurse
         find_changepoints(data(1:split_point,1), desired_confidence, startx);
