@@ -1,0 +1,29 @@
+%%
+% Title: Lab06 CUSUM charts
+%
+% Inputs:
+%
+%  - CSV file
+%  - Confidence level
+%
+% 
+% Output:  
+% 
+%  points where the change in mean occurred.
+%
+%%
+global global_points;
+
+desired_confidence = 90;  %input('Enter confidence level: ');
+%data = readmatrix("TwoMeans.csv");
+data = readmatrix("changes2.csv");
+data = data(2:end,1);
+
+global_points = [];
+find_changepoints(data,desired_confidence);
+hold on
+
+
+
+%disp(['Result: ', num2str(count) , ' out of ', num2str(runs),  ' runs']);
+
