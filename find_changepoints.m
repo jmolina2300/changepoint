@@ -43,7 +43,7 @@ function find_changepoints(data, desired_confidence, startx)
         % Save the split position
         global_points(end+1) = split_point + startx;
        
-        figure(3);
+        figure(2);
         plot(S,'LineWidth',1.0);
         hold on
         % Recurse
