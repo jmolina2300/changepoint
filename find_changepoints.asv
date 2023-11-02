@@ -28,26 +28,33 @@ function find_changepoints(data, desired_confidence, startx)
         end
     end
     
-    
-    
+    % Determine the confidence that there was a change 
     actual_confidence = (count/runs) * 100;
-    
     if actual_confidence > desired_confidence
-        % Find the split position
-        array = [ abs(min(S)), max(S)];
-        abs_array = abs(S);
-        
 
+        % Determine the split point by finding the point at which the 
+        % peak occurs in the CUSUM data.
+        abs_array = abs(S);
         split_point = find(abs_array == max(abs_array));
     
         % Save the split position
         global_points(end+1) = split_point + startx;
-        
+
+
+        % Add an x-offset of 'startx' to the CUSUM graph so it is 
+        % overlayed at the right spot in the final graph.
+        x = (1:length(S)) + startx;
+
+        % Scale the y-axis so the CUSUM and original data can be overlayed
+        % in one final graph.
         yyaxis right
+
+        % Plot the current CUSUM
         figure(1);
-        plot(S,'LineWidth',2.0);
+        plot(x, S,'LineWidth',2.0);
         hold on
-        % Recurse
+
+        % Recurse to find additional changepoints
         find_changepoints(data(1:split_point,1), desired_confidence, startx);
         find_changepoints(data(split_point+1:end,1), desired_confidence, split_point+startx);
     

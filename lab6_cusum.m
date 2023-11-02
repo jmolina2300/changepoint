@@ -15,7 +15,7 @@
 global global_points;
 
 desired_confidence = 95;  %input('Enter confidence level: ');
-data = readmatrix("TwoMeans.csv");
+data = readmatrix("changes.csv");
 data = data(2:end,1);
 
 
